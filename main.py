@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import os, random
 
 app = Flask(__name__)
@@ -13,6 +13,8 @@ url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_t
 
 @app.route('/')
 def index():
+    if request.args.get('code'):
+        return str(request.args.get('code'))
     return render_template('index.html', auth=url)
 
 if __name__ == '__main__':
