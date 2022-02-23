@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from requests.auth import HTTPBasicAuth
 import os, random, requests
 
 app = Flask(__name__)
@@ -14,7 +15,8 @@ url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_t
 def index():
     if request.args.get('code'):
         access_token = requests.post('https://www.reddit.com/api/v1/access_token', 
-        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"})
+        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"}),
+        header={'Authorization' : f'{HTTPBasicAuth(CLIENT_ID, REDDIT_TOKEN)}'}
         return access_token.json()
     return render_template('index.html', auth=url)
 
