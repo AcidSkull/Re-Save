@@ -17,7 +17,7 @@ def get_access_token():
             'code' : code,
             'redirect_uri' : URI}
 
-    headers = {'User-agent' : 'SaveScraper 0.1 by u/AciidSkull'}
+    headers = {'User-agent' : 'SaveScraper 0.2 by u/AciidSkull'}
 
     access_token = requests.post('https://ssl.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
     token = access_token.json()
