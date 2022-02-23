@@ -19,7 +19,7 @@ def index():
         data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"},
         headers={'User-agent' : 'Save Scraper 0.0.1', 'Content-Type': 'application/x-www-form-urlencoded'})
         print(access_token)
-        return 'access_token'
+        return render_template('index.html', auth=url)
     return render_template('index.html', auth=url)
 
 if __name__ == '__main__':
