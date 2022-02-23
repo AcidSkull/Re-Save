@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
-from flask_caching import Cache
 from uuid import uuid4
-import os, random, requests
+import os, requests
 
 app = Flask(__name__)
 
