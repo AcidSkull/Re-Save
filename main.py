@@ -14,7 +14,7 @@ url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_t
 def index():
     if request.args.get('code'):
         access_token = requests.post('https://www.reddit.com/api/v1/access_token', 
-        grant_type='authorization_code', code={request.args.get("code")}, redirect_uri=URI)
+        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"})
         return access_token.json()
     return render_template('index.html', auth=url)
 
