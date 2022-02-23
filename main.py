@@ -17,7 +17,8 @@ def index():
         access_token = requests.post('https://www.reddit.com/api/v1/access_token', 
         data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"}),
         header={'Authorization' : f'{HTTPBasicAuth(CLIENT_ID, REDDIT_TOKEN)}'}
-        return access_token
+        print(access_token)
+        return 'access_token'
     return render_template('index.html', auth=url)
 
 if __name__ == '__main__':
