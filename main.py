@@ -15,8 +15,8 @@ url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_t
 def index():
     if request.args.get('code'):
         access_token = requests.post('https://reddit.com/api/v1/access_token', 
-        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"}),
-        header={'User-agent' : 'Save Scraper 0.0.1', 'Authorization' : f'{HTTPBasicAuth(CLIENT_ID, REDDIT_TOKEN)}', 'Content-Type': 'application/x-www-form-urlencoded'}
+        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"},
+        header={'User-agent' : 'Save Scraper 0.0.1', 'Authorization' : f'{HTTPBasicAuth(CLIENT_ID, REDDIT_TOKEN)}', 'Content-Type': 'application/x-www-form-urlencoded'})
         print(access_token)
         return 'access_token'
     return render_template('index.html', auth=url)
