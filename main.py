@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request
-import os, random
+import os, random, requests
 
 app = Flask(__name__)
 
 REDDIT_TOKEN = os.environ.get("REDDIT_TOKEN")
 CLIENT_ID = os.environ.get("CLIENT_ID")
 RANDOM_STRING = str(random.randint(16, 90))
-
 URI = 'https://savescraperforreddit.herokuapp.com'
 
 url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={RANDOM_STRING}&redirect_uri={URI}&duration=temporary&scope=history"
@@ -14,7 +13,8 @@ url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_t
 @app.route('/')
 def index():
     if request.args.get('code'):
-        return str(request.args.get('code'))
+        access_token = requests.get(f'https://www.reddit.com/api/v1/access_token?grant_type=authorization_code&code={request.args.get("code")}&redirect_uri={URI}')
+        return access_token.json()
     return render_template('index.html', auth=url)
 
 if __name__ == '__main__':
