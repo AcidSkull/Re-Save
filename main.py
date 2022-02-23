@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 REDDIT_TOKEN = os.environ.get("REDDIT_TOKEN")
 CLIENT_ID = os.environ.get("CLIENT_ID")
-RANDOM_STRING = str(random.randint(16, 90))
+RANDOM_STRING = str(random.randint(16, 255))
 URI = 'https://savescraperforreddit.herokuapp.com'
 
 url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={RANDOM_STRING}&redirect_uri={URI}&duration=temporary&scope=history"
@@ -15,9 +15,9 @@ url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_t
 def index():
     if request.args.get('code'):
         access_token = requests.post('https://reddit.com/api/v1/access_token', 
-        auth=HTTPBasicAuth(f'<< {CLIENT_ID} >>', f'<< {REDDIT_TOKEN} >>'),
-        headers={'User-agent' : 'Save Scraper 0.0.1', 'Content-Type': 'application/x-www-form-urlencoded'},
-        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"})
+        auth=HTTPBasicAuth(CLIENT_ID, REDDIT_TOKEN),
+        data={"grant_type":'authorization_code', "code":f"{request.args.get('code')}", "redirect_uri":f"{URI}"},
+        headers={'User-agent' : 'Save Scraper 0.0.1', 'Content-Type': 'application/x-www-form-urlencoded'})
         print(access_token)
         return 'access_token'
     return render_template('index.html', auth=url)
