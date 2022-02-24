@@ -9,6 +9,10 @@
 <body>
     Hello World!<br>
     <a href="{{ auth_url }}">link</a><br>
-    {{ Obj }}
+    {% if (session['name']) %}
+        {{ session['name'] }}
+    {% else %}
+        {{ No user }}
+    {% endif %}
 </body>
 </html>
