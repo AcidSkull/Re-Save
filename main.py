@@ -31,8 +31,9 @@ def index():
     Obj = None
     if (request.args.get('code')):
         Token = get_access_token()
-        response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token}).json()
-        Obj = response['name']
+        response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token})
+        json = response.json()
+        Obj = json['name']
 
     return render_template('index.html', auth_url=url, Obj=Obj)
 
