@@ -10,7 +10,10 @@
     Hello World!<br>
     <a href="{{ auth_url }}">link</a><br>
     {% if (session['name']) %}
-        {{ session['name'] }}
+        {{ session['name'] }} </br>
+        {% for post in session['saved'] %}
+            <p>{{ post }} -> {{ session['saved'][post] }}</p><br>
+        {% endfor %}
     {% else %}
         <p>No user</p>
     {% endif %}
