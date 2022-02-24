@@ -3,6 +3,7 @@ from uuid import uuid4
 import os, requests
 
 app = Flask(__name__)
+app.secret_key = str(uuid4)
 
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
