@@ -11,6 +11,7 @@
     <a href="{{ auth_url }}">link</a><br>
     {% if (session['name']) %}
         {{ session['name'] }} </br>
+        {{ session['saved'] }}<br>
         {% for post in session['saved'] %}
             <p>{{ post }} -> {{ session['saved'][post] }}</p><br>
         {% endfor %}
