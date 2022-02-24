@@ -9,10 +9,9 @@ CLIENT_ID = os.environ.get("CLIENT_ID")
 URI = 'https://savescraperforreddit.herokuapp.com'
 
 
-def get_access_token():
+def get_access_token(code):
     auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
     
-    code = request.args.get('code') 
     data = {'grant_type' : 'authorization_code',
             'code' : code,
             'redirect_uri' : URI}
@@ -30,7 +29,7 @@ def index():
     url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=history"
     Obj = None
     if (request.args.get('code')):
-        Token = get_access_token()
+        Token = get_access_token(request.args.get('code'))
         response = requests.get("https://reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token})
         json = response.json()
         Obj = json['name']
