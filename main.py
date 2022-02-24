@@ -25,6 +25,8 @@ def get_access_token(code):
 
 @app.route('/')
 def index():
+    saved_posts = None
+
     random_string = str(uuid4())
     url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=identity,read,history"
 
@@ -39,9 +41,9 @@ def index():
             print(response)
             if response.status_code == 200:
                 json = response.json()
-                session['saved'] = json
+                saved_posts = json
         
-    return render_template('index.html', auth_url=url)
+    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
