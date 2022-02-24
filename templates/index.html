@@ -12,7 +12,7 @@
     {% if (session['name']) %}
         {{ session['name'] }} </br>
         {% for post in saved_posts %}
-            <p>{{ post }} -> {{ session['saved'][post] }}</p><br>
+            <p>{{ post }} -> {{ saved_posts[post] }}</p><br>
         {% endfor %}
     {% else %}
         <p>No user</p>
