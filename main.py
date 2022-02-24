@@ -26,7 +26,7 @@ def get_access_token(code):
 @app.route('/')
 def index():
     random_string = str(uuid4())
-    url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=history"
+    url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=identity,history"
     Obj = None
     if (request.args.get('code')):
         Token = get_access_token(request.args.get('code'))
