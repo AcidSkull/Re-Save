@@ -36,6 +36,7 @@ def index():
             session['name'] = json['name']
             
             response = requests.get("https://oauth.reddit.com/api/v1/saved", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
+            print(response)
             if response.status_code == 200:
                 json = response.json()
                 session['saved'] = json
