@@ -30,7 +30,7 @@ def index():
     Obj = None
     if (request.args.get('code')):
         Token = get_access_token(request.args.get('code'))
-        response = requests.get("https://reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
+        response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
         json = response.json()
         Obj = json['name']
 
