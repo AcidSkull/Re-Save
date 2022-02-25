@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Saved Post Manager</title>
 </head>
 <body>
-    Hello World!<br>
-    <a href="{{ auth_url }}">link</a><br>
     {% if (session['name']) %}
         {{ session['name'] }} </br>
         {% for post in saved_posts %}
             <p>{{ post }} -> {{ saved_posts[post] }}</p><br>
         {% endfor %}
     {% else %}
-        <p>No user</p>
+        <div id="main">
+            <h1>SAVED POST MANAGER</h1>
+            <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
+            <hr>
+            <ul>
+                <li>Browse you're saved post fast and easy</li>
+                <li>Reddit show only 1 000 posts, now you can save all you're important stuff</li>
+                <li>Search through you're items</li>
+                <li>Group posts by subreddits</li>
+            </ul>
+        </div>
     {% endif %}
 </body>
 </html>

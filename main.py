@@ -38,7 +38,7 @@ def index():
             session['name'] = json['name']
             
             response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=1", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
-            print(response)
+            
             if response.status_code == 200:
                 json = response.json()
                 saved_posts = json
