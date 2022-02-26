@@ -22,7 +22,7 @@ def get_access_token(code):
     access_token = requests.post('https://ssl.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
     token = access_token.json()
 
-    if(token['access_token']):
+    if(token.get('access_token')):
         return token['access_token']
     else:
         return None
