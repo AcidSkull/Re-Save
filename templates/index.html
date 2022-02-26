@@ -23,18 +23,18 @@
                     <div class="post_topbar">
                         <div class="score">
                             👍<br>
-                            {{ post['score'] }}<br>
+                            {{ post['data']['score'] }}<br>
                             👎<br>
                         </div>
                         <div class="info">
-                            <p>{{ post['subreddit_name_prefixed']}} 👉 Posted by u/{{ post['author'] }} ⏰ {% set d = post['created_utc'] | dateformat %}{{ d.day }}-{{ d.month }}-{{ d.year }}</p>
-                            <h2>{{ post['title'] }}</h2>
+                            <p>{{ post['data']['subreddit_name_prefixed']}} 👉 Posted by u/{{ post['data']['author'] }} ⏰ {% set d = post['data']['created_utc'] | dateformat %}{{ d.day }}-{{ d.month }}-{{ d.year }}</p>
+                            <h2>{{ post['data']['title'] }}</h2>
                         </div>
                     </div>
-                    {% if post.get('selftext') %}
-                        <p>{{ post['selftext'] }}</p>
+                    {% if post['data'].get('selftext') %}
+                        <p>{{ post['data']['selftext'] }}</p>
                     {% else %}
-                        <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
+                        <img src="{{ post['data']['url'] }}" alt="{{ post['data']['title'] }}">
                     {% endif %}
                 </div>
             </div>
