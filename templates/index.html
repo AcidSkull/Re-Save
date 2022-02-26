@@ -17,25 +17,28 @@
             <a href="">LOG OUT</a>
         </div>
         <div id="posts">
-            <!-- {% for post in saved_posts %}
+            {% for post in saved_posts['data']['children'] %}
             <div id="posts">
                 <div class="post">
                     <div class="post_topbar">
                         <div class="score">
                             👍<br>
-                            644<br>
+                            {{ post['score'] }}<br>
                             👎<br>
                         </div>
                         <div class="info">
-                            <p>r/unixporn 👉 Posted by u/cut9 ⏰ 02-02-2020</p>
-                            <h2>[i3] comfy wallpaper and pretty colors</h2>
+                            <p>{{ post['subreddit_name_prefixed']}} 👉 Posted by u/{{ post['author'] }} ⏰ {% set d = datetime.fromtimestamp(post['created_utc']) %}{{ d.day }}-{{ d.month }}-{{ d.year }}</p>
+                            <h2>{{ post['title'] }}</h2>
                         </div>
                     </div>
-                    <img src="https://i.redd.it/0lcgr2zrtij81.png" alt="post">
+                    {% if post.get('selftext') %}
+                        <p>{{ post['selftext'] }}</p>
+                    {% else %}
+                        <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
+                    {% endif %}
                 </div>
             </div>
-            {% endfor %} -->
-            {{ saved_posts }}
+            {% endfor %}
         </div>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
