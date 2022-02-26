@@ -27,7 +27,7 @@
                             👎<br>
                         </div>
                         <div class="info">
-                            <p>{{ post['subreddit_name_prefixed']}} 👉 Posted by u/{{ post['author'] }} ⏰ {% set d = datetime.fromtimestamp(post['created_utc']) %}{{ d.day }}-{{ d.month }}-{{ d.year }}</p>
+                            <p>{{ post['subreddit_name_prefixed']}} 👉 Posted by u/{{ post['author'] }} ⏰ {% set d = post['created_utc'] | dateformat %}{{ d.day }}-{{ d.month }}-{{ d.year }}</p>
                             <h2>{{ post['title'] }}</h2>
                         </div>
                     </div>
