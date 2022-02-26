@@ -17,7 +17,7 @@
             <a href="">LOG OUT</a>
         </div>
         <div id="posts">
-            {% for post in saved_posts %}
+            <!-- {% for post in saved_posts %}
             <div id="posts">
                 <div class="post">
                     <div class="post_topbar">
@@ -34,7 +34,8 @@
                     <img src="https://i.redd.it/0lcgr2zrtij81.png" alt="post">
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} -->
+            {{ saved_posts }}
         </div>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
