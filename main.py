@@ -49,7 +49,8 @@ def index():
                     json = response.json()
                     saved_posts = json
                     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
-    if saved_posts == None: session.pop('user')
+    if (saved_posts == None) and (session.get('user')):
+        session.pop('user')
         
     return render_template('index.html', auth_url=url)
 
