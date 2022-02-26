@@ -8,14 +8,21 @@
     <title>Saved Post Manager</title>
 </head>
 <body>
+    <div id="main">
+        <h1>SAVED POST MANAGER</h1>
     {% if (session['name']) %}
         {{ session['name'] }} </br>
-        {% for post in saved_posts %}
-            <p>{{ post }} -> {{ saved_posts[post] }}</p><br>
-        {% endfor %}
+        <div id="navbar">
+            <p>u/AciidSkull</p>
+            <input type="text" placeholder="Search..">
+            <a href="">LOG OUT</a>
+        </div>
+        <div id="posts">
+            <div class="post">
+                
+            </div>
+        </div>
     {% else %}
-        <div id="main">
-            <h1>SAVED POST MANAGER</h1>
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
             <hr><br>
             <p><b>SAVED POST MANAGER</b> is free and open-source tool to browse and manage you're saved posts. The main advantage of project are:</p>
@@ -25,7 +32,7 @@
                 <li>Search through you're items</li>
                 <li>Group posts by subreddits</li>
             </ul>
-        </div>
     {% endif %}
+    </div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+from asyncio import SafeChildWatcher
 from flask import Flask, render_template, request, session
 from uuid import uuid4
 import os, requests
@@ -21,7 +22,10 @@ def get_access_token(code):
     access_token = requests.post('https://ssl.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
     token = access_token.json()
 
-    return token['access_token']
+    if(token['access_token']):
+        return token['access_token']
+    else:
+        return None
 
 @app.route('/')
 def index():
@@ -32,19 +36,22 @@ def index():
 
     if (request.args.get('code')):
         Token = get_access_token(request.args.get('code'))
-        response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
-        if response.status_code == 200:
-            json = response.json()
-            session['name'] = json['name']
-            
-            response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=1", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
 
+        if Token != None:
+            response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
             if response.status_code == 200:
                 json = response.json()
-                saved_posts = json
-            
+                session['name'] = json['name']
+                
+                response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=1", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
+
+                if response.status_code == 200:
+                    json = response.json()
+                    saved_posts = json
+                    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
+    if saved_posts == None: session.pop('user')
         
-    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
+    return render_template('index.html', auth_url=url)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
