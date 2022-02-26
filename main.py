@@ -2,7 +2,6 @@ from asyncio import SafeChildWatcher
 from flask import Flask, render_template, request, session
 from uuid import uuid4
 import os, requests
-from numpy import save
 
 app = Flask(__name__)
 app.secret_key = str(uuid4)
