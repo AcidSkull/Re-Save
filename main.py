@@ -38,10 +38,11 @@ def index():
             session['name'] = json['name']
             
             response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=1", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
-            
+
             if response.status_code == 200:
                 json = response.json()
                 saved_posts = json
+            
         
     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
 

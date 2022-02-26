@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic&display=swap');
 
 body{
+    font-family: 'Nanum Gothic', sans-serif;
     margin: 0;
     background-image: url("carbon_fibre.png");
     /* Background pattern from Toptal Subtle Patterns */
@@ -53,4 +54,8 @@ h1{
     width: 100%;
     margin-bottom: 25px;
     text-align: center;
+}
+
+p{
+    margin: 5%;
 }
