@@ -28,6 +28,10 @@ def get_access_token(code):
     else:
         return None
 
+@app.template_filter('dateformat')
+def dateformat(value):
+    return datetime.fromtimestamp(value)
+
 @app.route('/')
 def index():
     saved_posts = None
