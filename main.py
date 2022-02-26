@@ -2,6 +2,7 @@ from asyncio import SafeChildWatcher
 from flask import Flask, render_template, request, session
 from uuid import uuid4
 import os, requests
+from numpy import save
 
 app = Flask(__name__)
 app.secret_key = str(uuid4)
@@ -9,6 +10,7 @@ app.secret_key = str(uuid4)
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
 URI = 'https://savescraperforreddit.herokuapp.com'
+USER_AGENT = 'SaveScraperForReddit/0.2.1 by u/AciidSkull'
 
 def get_access_token(code):
     auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
@@ -17,7 +19,7 @@ def get_access_token(code):
             'code' : code,
             'redirect_uri' : URI}
 
-    headers = {'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'}
+    headers = {'User-agent' : USER_AGENT}
 
     access_token = requests.post('https://ssl.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
     token = access_token.json()
@@ -38,16 +40,17 @@ def index():
         Token = get_access_token(request.args.get('code'))
 
         if Token != None:
-            response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
+            response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
             if response.status_code == 200:
                 json = response.json()
                 session['name'] = json['name']
                 
-                response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=1", headers={"Authorization" : "bearer " + Token, 'User-agent' : 'SaveScraperForReddit/0.2.1 by u/AciidSkull'})
+                response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=5", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
 
                 if response.status_code == 200:
                     json = response.json()
                     saved_posts = json
+                    print(saved_posts)
                     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
     if (saved_posts == None) and (session.get('user')):
         session.pop('user')
