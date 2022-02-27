@@ -40,7 +40,7 @@ def get_saved_posts(Token):
     if response.status_code == 200:
         return parse_reddit_api_response(response.json())
     else:
-        return None
+        return []
 
 def parse_reddit_api_response(saved_posts):
     parsed_response = []
@@ -60,7 +60,7 @@ def parse_reddit_api_response(saved_posts):
 
 @app.route('/')
 def index():
-    saved_posts = None
+    saved_posts = []
 
     if not(session.get('user')):
         random_string = str(uuid4())
@@ -75,7 +75,7 @@ def index():
                 saved_posts = get_saved_posts(session['Token'])
             
 
-    if (saved_posts == None) and (session.get('user')):
+    if (len(saved_posts) == 0) and (session.get('user')):
         session.pop('user')
         
     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
