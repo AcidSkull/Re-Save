@@ -77,8 +77,9 @@ def index():
             session['Token'] = reddit.auth.authorize(request.args.get('code'))
 
             if session['Token'] != None:
-                session['name'] = reddit.user.me()
-                saved_posts = reddit.redditor(name=session['name']).saved(limit=None)
+                name = reddit.user.me()
+                session['name'] = name
+                saved_posts = reddit.redditor(name=name).saved(limit=None)
             
         
     return render_template('index.html', auth_url=url, saved_posts=saved_posts)

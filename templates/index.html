@@ -16,7 +16,10 @@
             <input type="text" placeholder="Search..">
             <a href="">LOG OUT</a>
         </div>
-        {{ saved_posts }}
+        {% for post in saved_posts %}
+            post<br>
+            <hr>
+        {% endfor %}
         <!-- <div id="posts">
             {% for post in session['saved_posts'] %}
             <div id="posts">
