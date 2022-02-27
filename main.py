@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session
 from datetime import datetime
 from uuid import uuid4
-import os, requests
+import os, requests, praw
 
 app = Flask(__name__)
 app.secret_key = str(uuid4)
@@ -10,6 +10,7 @@ CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
 URI = 'https://savescraperforreddit.herokuapp.com'
 USER_AGENT = 'SaveScraperForReddit/0.2.1 by u/AciidSkull'
+SCOPE = ['identity', 'read', 'history']
 
 def get_access_token(code):
     auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
@@ -60,18 +61,23 @@ def parse_reddit_api_response(saved_posts):
 
 @app.route('/')
 def index():
+    reddit = praw.Reddit(
+        client_id = CLIENT_ID,
+        client_secret = CLIENT_SECRET,
+        redirect_uri = URI,
+        user_agent = USER_AGENT,
+    )
 
     if not(session.get('user')):
         random_string = str(uuid4())
-        url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=identity,read,history"
+        url = reddit.auth.url(SCOPE, random_string, 'permanent')
 
         if (request.args.get('code')):
-            session['Token'] = get_access_token(request.args.get('code'))
+            session['Token'] = reddit.auth.authorize(request.args.get('code'))
 
             if session['Token'] != None:
-                user = get_user_info(session['Token'])
-                session['name'] = user['name']
-                session['saved_posts'] = get_saved_posts(session['Token'])
+                session['name'] = reddit.user.me()
+                session['saved_posts'] = reddit.redditor(name=session['name']).saved(limit=None)
             
         
     return render_template('index.html', auth_url=url)

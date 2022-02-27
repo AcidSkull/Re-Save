@@ -16,7 +16,8 @@
             <input type="text" placeholder="Search..">
             <a href="">LOG OUT</a>
         </div>
-        <div id="posts">
+        {{ session['saved_posts'] }}
+        <!-- <div id="posts">
             {% for post in session['saved_posts'] %}
             <div id="posts">
                 <div class="post">
@@ -38,7 +39,7 @@
                     {% endif %}
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} -->
         </div>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
