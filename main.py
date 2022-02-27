@@ -45,17 +45,29 @@ def get_saved_posts(Token):
 
 def parse_reddit_api_response(saved_posts):
     parsed_response = []
-    for post in saved_posts['data']['children']:
-        score = post['data']['score']
-        subreddit_name = post['data']['subreddit_name_prefixed']
-        author = post['data']['author']
-        date = datetime.fromtimestamp(post['data']['created_utc'])
-        permalink = 'https://www.reddit.com' + post['data']['permalink']
-        title = post['data']['title']
-        selftext = post['data']['selftext']
-        img_url = post['data']['url']
+    # for post in saved_posts['data']['children']:
+    #     score = post['data']['score']
+    #     subreddit_name = post['data']['subreddit_name_prefixed']
+    #     author = post['data']['author']
+    #     date = datetime.fromtimestamp(post['data']['created_utc'])
+    #     permalink = 'https://www.reddit.com' + post['data']['permalink']
+    #     title = post['data']['title']
+    #     selftext = post['data']['selftext']
+    #     img_url = post['data']['url']
 
-        parsed_response.append([score, subreddit_name, author, date, permalink, title, selftext, img_url])
+    #     parsed_response.append([score, subreddit_name, author, date, permalink, title, selftext, img_url])
+
+    for post in saved_posts.values():
+        parsed_response.append([
+            post.score,
+            post.subreddit,
+            post.author,
+            datetime.fromtimestamp(post.created_utc),
+            'https://reddit.com' + post.permalink,
+            post.title,
+            post.selftext,
+            post.url,
+        ])
 
     return parsed_response
 
@@ -79,7 +91,8 @@ def index():
             if session['Token'] != None:
                 name = reddit.user.me()
                 session['name'] = name
-                saved_posts = reddit.redditor(name=name).saved(limit=None)
+                reddit_saved_posts = {x.id:x for x in reddit.redditor(name=name).saved(limit=None)}
+                saved_posts = parse_reddit_api_response(reddit_saved_posts)
             
         
     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
