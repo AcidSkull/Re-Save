@@ -49,7 +49,7 @@ def dateformat(value):
 
 @app.route('/')
 def index():
-    saved_posts = None
+    saved_posts = {}
 
     random_string = str(uuid4())
     url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=identity,read,history"
@@ -63,7 +63,7 @@ def index():
             saved_posts = get_saved_posts(session['Token'])
             
 
-    if (saved_posts == None) and (session.get('user')):
+    if (saved_posts == {}) and (session.get('user')):
         session.pop('user')
         
     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
