@@ -28,6 +28,21 @@ def get_access_token(code):
     else:
         return None
 
+def get_user_info(Token):
+    response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def get_saved_posts(Token):
+    response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=5", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+
 @app.template_filter('dateformat')
 def dateformat(value):
     return datetime.fromtimestamp(value)
@@ -40,25 +55,18 @@ def index():
     url = f"https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={random_string}&redirect_uri={URI}&duration=temporary&scope=identity,read,history"
 
     if (request.args.get('code')):
-        Token = get_access_token(request.args.get('code'))
+        session['Token'] = get_access_token(request.args.get('code'))
 
-        if Token != None:
-            response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
-            if response.status_code == 200:
-                json = response.json()
-                session['name'] = json['name']
-                
-                response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=5", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+        if session['Token'] != None:
+            user = get_user_info(session['Token'])
+            session['name'] = user['name']
+            saved_posts = get_saved_posts(session['Token'])
+            
 
-                if response.status_code == 200:
-                    json = response.json()
-                    saved_posts = json
-                    print(saved_posts)
-                    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
     if (saved_posts == None) and (session.get('user')):
         session.pop('user')
         
-    return render_template('index.html', auth_url=url)
+    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
