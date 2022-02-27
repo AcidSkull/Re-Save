@@ -10,7 +10,7 @@
 <body>
     <div id="main">
         <h1>SAVED POST MANAGER</h1>
-    {% if (session.get('name') and len(saved_posts) > 0) %}
+    {% if (session.get('name')) %}
         <div id="navbar">
             <p>u/{{ session['name'] }}</p>
             <input type="text" placeholder="Search..">
