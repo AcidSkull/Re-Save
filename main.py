@@ -89,7 +89,7 @@ def index():
             session['Token'] = reddit.auth.authorize(request.args.get('code'))
 
             if session['Token'] != None:
-                name = reddit.user.me()
+                name = str(reddit.user.me())
                 session['name'] = name
                 reddit_saved_posts = {x.id:x for x in reddit.redditor(name=name).saved(limit=None)}
                 saved_posts = parse_reddit_api_response(reddit_saved_posts)
