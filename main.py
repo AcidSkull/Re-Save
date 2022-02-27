@@ -61,6 +61,7 @@ def parse_reddit_api_response(saved_posts):
 
 @app.route('/')
 def index():
+    saved_posts = None
     reddit = praw.Reddit(
         client_id = CLIENT_ID,
         client_secret = CLIENT_SECRET,
