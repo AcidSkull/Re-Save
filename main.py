@@ -77,10 +77,10 @@ def index():
 
             if session['Token'] != None:
                 session['name'] = reddit.user.me()
-                session['saved_posts'] = reddit.redditor(name=session['name']).saved(limit=None)
+                saved_posts = reddit.redditor(name=session['name']).saved(limit=None)
             
         
-    return render_template('index.html', auth_url=url)
+    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
