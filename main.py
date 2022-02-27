@@ -38,7 +38,7 @@ def get_user_info(Token):
 def get_saved_posts(Token):
     response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=5", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
     if response.status_code == 200:
-        return response.json()
+        return parse_reddit_api_response(response.json())
     else:
         return None
 
@@ -55,6 +55,8 @@ def parse_reddit_api_response(saved_posts):
         img_url = post['data']['url']
 
         parsed_response.append([score, subreddit_name, author, date, permalink, title, selftext, img_url])
+
+    return parsed_response
 
 @app.route('/')
 def index():
