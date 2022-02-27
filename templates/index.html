@@ -17,24 +17,24 @@
             <a href="">LOG OUT</a>
         </div>
         <div id="posts">
-            {% for post in saved_posts['data']['children'] %}
+            {% for post in saved_posts %}
             <div id="posts">
                 <div class="post">
                     <div class="post_topbar">
                         <div class="score">
                             👍<br>
-                            {{ post['data']['score'] }}<br>
+                            {{ post[0] }}<br>
                             👎<br>
                         </div>
                         <div class="info">
-                            <p>{{ post['data']['subreddit_name_prefixed']}} 👉 Posted by u/{{ post['data']['author'] }} ⏰ {% set d = post['data']['created_utc'] | dateformat %}{{ d.day }}-{{ d.month }}-{{ d.year }}</p>
-                            <a href="{{ post['data']['url'] }}" target="_blank"><h2>{{ post['data']['title'] }}</h2></a>
+                            <p>{{ post[1]}} 👉 Posted by u/{{ post[2] }} ⏰{{ post[3].day }}-{{ post[3].month }}-{{ post[3].year }}</p>
+                            <a href="{{ post[4] }}" target="_blank"><h2>{{ post[5] }}</h2></a>
                         </div>
                     </div>
-                    {% if post['data'].get('selftext') %}
-                        <p>{{ post['data']['selftext'] }}</p>
+                    {% if post[6] != '' %}
+                        <p>{{ post[6] }}</p>
                     {% else %}
-                        <img src="{{ post['data']['url'] }}" alt="{{ post['data']['title'] }}">
+                        <img src="{{ post[7] }}" alt="{{ post[5] }}">
                     {% endif %}
                 </div>
             </div>
