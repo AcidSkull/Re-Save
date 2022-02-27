@@ -59,14 +59,14 @@ def parse_reddit_api_response(saved_posts):
 
     for post in saved_posts.values():
         parsed_response.append([
-            post.score,
-            post.subreddit,
-            post.author,
+            str(post.score),
+            str(post.subreddit),
+            str(post.author),
             datetime.fromtimestamp(post.created_utc),
-            'https://reddit.com' + post.permalink,
-            post.title,
-            post.selftext,
-            post.url,
+            'https://reddit.com' + str(post.permalink),
+            str(post.title),
+            str(post.selftext),
+            str(post.url),
         ])
 
     return parsed_response
