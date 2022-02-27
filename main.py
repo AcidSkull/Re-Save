@@ -36,7 +36,7 @@ def get_user_info(Token):
         return None
 
 def get_saved_posts(Token):
-    response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=5", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+    response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
     if response.status_code == 200:
         return parse_reddit_api_response(response.json())
     else:
@@ -60,7 +60,6 @@ def parse_reddit_api_response(saved_posts):
 
 @app.route('/')
 def index():
-    saved_posts = []
 
     if not(session.get('user')):
         random_string = str(uuid4())
@@ -72,13 +71,10 @@ def index():
             if session['Token'] != None:
                 user = get_user_info(session['Token'])
                 session['name'] = user['name']
-                saved_posts = get_saved_posts(session['Token'])
+                session['saved_posts'] = get_saved_posts(session['Token'])
             
-
-    if (len(saved_posts) == 0) and (session.get('user')):
-        session.pop('user')
         
-    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
+    return render_template('index.html', auth_url=url)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
