@@ -92,10 +92,10 @@ def index():
                 name = str(reddit.user.me())
                 session['name'] = name
                 reddit_saved_posts = {x.id:x for x in reddit.redditor(name=name).saved(limit=None)}
-                saved_posts = parse_reddit_api_response(reddit_saved_posts)
+                session['saved_posts'] = parse_reddit_api_response(reddit_saved_posts)
             
         
-    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
+    return render_template('index.html', auth_url=url)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
