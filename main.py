@@ -36,7 +36,7 @@ def get_user_info(Token):
         return None
 
 def get_saved_posts(Token):
-    response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+    response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=None", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
     if response.status_code == 200:
         return parse_reddit_api_response(response.json())
     else:
