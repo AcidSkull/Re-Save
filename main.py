@@ -44,13 +44,13 @@ def index():
     if saved_posts == None:
 
         if (request.args.get('code')):
-            session['Token'] = reddit.auth.authorize(request.args.get('code'))
+            if not session.get('Token'):
+                session['Token'] = reddit.auth.authorize(request.args.get('code'))
 
-            if session['Token'] != None:
-                name = str(reddit.user.me())
-                session['name'] = name
-                reddit_saved_posts = {x.id:x for x in reddit.redditor(name=name).saved(limit=None)}
-                saved_posts = parse_reddit_api_response(reddit_saved_posts)
+            name = str(reddit.user.me())
+            session['name'] = name
+            reddit_saved_posts = {x.id:x for x in reddit.redditor(name=name).saved(limit=None)}
+            saved_posts = parse_reddit_api_response(reddit_saved_posts)
         else:
             random_string = str(uuid4())
             url = reddit.auth.url(SCOPE, random_string, 'permanent')
