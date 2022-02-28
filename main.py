@@ -41,7 +41,7 @@ def index():
         user_agent = USER_AGENT,
     )
 
-    if not(session.get('user')):
+    if saved_posts == None:
 
         if (request.args.get('code')):
             session['Token'] = reddit.auth.authorize(request.args.get('code'))
