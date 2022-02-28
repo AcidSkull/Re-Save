@@ -17,24 +17,24 @@
             <a href="">LOG OUT</a>
         </div>
         <div id="posts">
-            {% for post in saved_posts %}
+            {% for post in saved_posts.values() %}
             <div id="posts">
                 <div class="post">
                     <div class="post_topbar">
                         <div class="score">
                             👍<br>
-                            {{ post[0] }}<br>
+                            {{ str(post.score) }}<br>
                             👎<br>
                         </div>
                         <div class="info">
-                            <p>{{ post[1]}} 👉 Posted by u/{{ post[2] }} ⏰{{ post[3].day }}-{{ post[3].month }}-{{ post[3].year }}</p>
-                            <a href="{{ post[4] }}" target="_blank"><h2>{{ post[5] }}</h2></a>
+                            <p>{{ str(post.subreddit) }} 👉 Posted by u/{{ str(post.author) }} ⏰</p>
+                            <a href="https://reddit.com{{ str(post.permalink) }}" target="_blank"><h2>{{ str(post.title) }}</h2></a>
                         </div>
                     </div>
-                    {% if post[6] != '' %}
-                        <p>{{ post[6] }}</p>
+                    {% if str(post.selftext) != '' %}
+                        <p>{{ str(post.selftext) }}</p>
                     {% else %}
-                        <img src="{{ post[7] }}" alt="{{ post[5] }}">
+                        <img src="{{ str(post.url) }}" alt="{{ str(post.title) }}">
                     {% endif %}
                 </div>
             </div>
