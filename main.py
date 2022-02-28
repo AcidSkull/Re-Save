@@ -12,8 +12,50 @@ URI = 'https://savescraperforreddit.herokuapp.com'
 USER_AGENT = 'SaveScraperForReddit/0.2.1 by u/AciidSkull'
 SCOPE = ['identity', 'read', 'history']
 
+def get_access_token(code):
+    auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
+    
+    data = {'grant_type' : 'authorization_code',
+            'code' : code,
+            'redirect_uri' : URI}
+
+    headers = {'User-agent' : USER_AGENT}
+
+    access_token = requests.post('https://ssl.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
+    token = access_token.json()
+
+    if(token.get('access_token')):
+        return token['access_token']
+    else:
+        return None
+
+def get_user_info(Token):
+    response = requests.get("https://oauth.reddit.com/api/v1/me", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def get_saved_posts(Token):
+    response = requests.get(f"https://oauth.reddit.com/user/{session['name']}/saved?limit=None", headers={"Authorization" : "bearer " + Token, 'User-agent' : USER_AGENT})
+    if response.status_code == 200:
+        return parse_reddit_api_response(response.json())
+    else:
+        return []
+
 def parse_reddit_api_response(saved_posts):
     parsed_response = []
+    # for post in saved_posts['data']['children']:
+    #     score = post['data']['score']
+    #     subreddit_name = post['data']['subreddit_name_prefixed']
+    #     author = post['data']['author']
+    #     date = datetime.fromtimestamp(post['data']['created_utc'])
+    #     permalink = 'https://www.reddit.com' + post['data']['permalink']
+    #     title = post['data']['title']
+    #     selftext = post['data']['selftext']
+    #     img_url = post['data']['url']
+
+    #     parsed_response.append([score, subreddit_name, author, date, permalink, title, selftext, img_url])
 
     for post in saved_posts.values():
         parsed_response.append([
