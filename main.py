@@ -18,6 +18,7 @@ reddit = praw.Reddit(
         redirect_uri = URI,
         user_agent = USER_AGENT,
     )
+reddit.config.decode_html_entities = True
 
 def parse_reddit_api_response(saved_posts):
     parsed_response = []
@@ -30,7 +31,7 @@ def parse_reddit_api_response(saved_posts):
             datetime.fromtimestamp(post.created_utc),
             'https://reddit.com' + str(post.permalink),
             str(post.title),
-            html.unescape(str(post.selftext_html)),
+            str(post.selftext_html),
             str(post.url),
         ])
 
