@@ -41,7 +41,7 @@ def index():
         user_agent = USER_AGENT,
     )
 
-    if(request.args.get('code') and not session.get('code')):
+    if(request.args.get('code') and not session.get('Token')):
         session['code'] = request.args.get('code')
         session['Token'] = reddit.auth.authorize(session['code'])
         session['name'] = str(reddit.user.me())
