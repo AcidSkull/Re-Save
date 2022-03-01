@@ -24,16 +24,17 @@ def parse_reddit_api_response(saved_posts):
     parsed_response = []
 
     for post in saved_posts.values():
-        parsed_response.append([
-            str(post.score),
-            str(post.subreddit),
-            str(post.author),
-            datetime.fromtimestamp(post.created_utc),
-            'https://reddit.com' + str(post.permalink),
-            str(post.title),
-            post.selftext_html,
-            str(post.url),
-        ])
+        parsed_response.append({
+            'score' : post.score,
+            'subreddit' : post.subreddit_name_prefixed,
+            'author' : str(post.author),
+            'date' : datetime.fromtimestamp(post.created_utc),
+            'permalink' : 'https://reddit.com' + str(post.permalink),
+            'title' : post.title,
+            'selftext' : post.selftext_html,
+            'url' : post.url,
+            'is_video' : post.is_video,
+        })
 
     return parsed_response
 

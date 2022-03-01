@@ -23,18 +23,20 @@
                     <div class="post_topbar">
                         <div class="score">
                             👍<br>
-                            {{ post[0] }}<br>
+                            {{ post['score'] }}<br>
                             👎<br>
                         </div>
                         <div class="info">
-                            <p>{{ post[1]}} 👉 Posted by u/{{ post[2] }} ⏰{{ post[3].day }}-{{ post[3].month }}-{{ post[3].year }}</p>
-                            <a href="{{ post[4] }}" target="_blank"><h2>{{ post[5] }}</h2></a>
+                            <p>{{ post['subreddit']}} 👉 Posted by u/{{ post['author'] }} ⏰{{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }}</p>
+                            <a href="{{ post['permalink'] }}" target="_blank"><h2>{{ post['title'] }}</h2></a>
                         </div>
                     </div>
-                    {% if post[6] != None %}
-                        <p>{{ post[6] | safe }}</p>
+                    {% if post['selftext'] != None %}
+                        {{ post['selftext'] | safe }}
+                    {% else if not post['is_video']%}
+                        <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
                     {% else %}
-                        <img src="{{ post[7] }}" alt="{{ post[5] }}">
+                        <video src="{{ post['url'] }}" controls></video>
                     {% endif %}
                 </div>
             </div>
