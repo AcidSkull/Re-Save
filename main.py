@@ -9,7 +9,7 @@ app.secret_key = str(uuid4)
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
 URI = 'https://savescraperforreddit.herokuapp.com'
-USER_AGENT = 'SaveScraperForReddit/0.2.1 by u/AciidSkull'
+USER_AGENT = 'SaveScraperForReddit/0.3.5 by u/AciidSkull'
 SCOPE = ['identity', 'read', 'history']
 
 reddit = praw.Reddit(
@@ -29,8 +29,8 @@ def parse_reddit_api_response(saved_posts):
             str(post.author),
             datetime.fromtimestamp(post.created_utc),
             'https://reddit.com' + str(post.permalink),
-            html.unescape(str(post.title)),
-            str(post.selftext_html),
+            str(post.title),
+            html.unescape(str(post.selftext_html)),
             str(post.url),
         ])
 
