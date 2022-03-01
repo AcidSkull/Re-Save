@@ -41,7 +41,7 @@ def index():
     saved_posts = []
     url = ''
 
-    if(not request.args.get('code')):
+    if request.args.get('code'):
         session['code'] = request.args.get('code')
 
         if not session.get('Token'):
