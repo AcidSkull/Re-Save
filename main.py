@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session
 from datetime import datetime
 from uuid import uuid4
-import os, praw
+import os, praw, html
 
 app = Flask(__name__)
 app.secret_key = str(uuid4)
@@ -29,8 +29,8 @@ def parse_reddit_api_response(saved_posts):
             str(post.author),
             datetime.fromtimestamp(post.created_utc),
             'https://reddit.com' + str(post.permalink),
-            str(post.title),
-            (str(post.body_html)),
+            html.unescape(str(post.title)),
+            str(post.selftext_html),
             str(post.url),
         ])
 
