@@ -33,7 +33,7 @@
                     </div>
                     {% if post['selftext'] != None %}
                         {{ post['selftext'] | safe }}
-                    {% else if not post['is_video']%}
+                    {% elif not post['is_video']%}
                         <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
                     {% else %}
                         <video src="{{ post['url'] }}" controls></video>
