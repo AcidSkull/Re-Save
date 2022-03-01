@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     {% if post[6] != None %}
-                        {{ post[6] }}
+                        {{ post[6] | safe }}
                     {% else %}
                         <img src="{{ post[7] }}" alt="{{ post[5] }}">
                     {% endif %}

@@ -31,7 +31,7 @@ def parse_reddit_api_response(saved_posts):
             datetime.fromtimestamp(post.created_utc),
             'https://reddit.com' + str(post.permalink),
             str(post.title),
-            post.selftext_html,
+            html.unescape(post.selftext_html),
             str(post.url),
         ])
 
