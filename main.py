@@ -31,7 +31,7 @@ def parse_reddit_api_response(saved_posts):
 
 @app.route('/')
 def index():
-    saved_posts = None
+    saved_posts = []
     url = ''
 
     reddit = praw.Reddit(
