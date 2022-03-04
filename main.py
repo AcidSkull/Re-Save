@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from flask import Flask, render_template, request, session, url_for
 from datetime import datetime
 from uuid import uuid4
@@ -65,3 +66,10 @@ def index():
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
     app.run(debug=True, host='0.0.0.0', port=port)
+
+@app.route('/logout')
+def logout():
+    if session.get('Token'):
+        session.pop('Token')
+        session.pop('name')
+    return redirect(url_for('index'))
