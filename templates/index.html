@@ -36,10 +36,7 @@
                     {% elif not post['is_video']%}
                         <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
                     {% else %}
-                        <video controls>
-                            <source src="{{ post['url_video'] }}" type="video/mp4">
-                            <source src="{{ post['url_audio'] }}" type="audio/mp4">
-                        </video>
+                        <a href="{{ post['url'] }}"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
                     {% endif %}
                 </div>
             </div>
@@ -55,7 +52,6 @@
                 <li>Search through you're items</li>
                 <li>Group posts by subreddits</li>
             </ul>
-    {% endif %}
     </div>
 </body>
 </html>

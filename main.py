@@ -2,7 +2,7 @@ from ast import parse
 from flask import Flask, render_template, request, session
 from datetime import datetime
 from uuid import uuid4
-import os, praw, re
+import os, praw
 
 app = Flask(__name__)
 app.secret_key = str(uuid4)
@@ -36,11 +36,7 @@ def parse_reddit_api_response(saved_posts):
             'is_video' : post.is_video,
         })
         if parsed_response[-1]['is_video']:
-            parsed_response[-1]['url_video'] = post.media['reddit_video']['fallback_url']
-            parsed_response[-1]['url_audio'] = re.sub(
-                '_\d+\.mp4', 
-                '_audio.mp4',
-                parsed_response[-1]['url_video'])
+            parsed_response[-1]['thumbnail'] = post.thumbnail
 
     return parsed_response
 
