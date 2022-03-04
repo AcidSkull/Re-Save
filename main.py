@@ -36,7 +36,7 @@ def parse_reddit_api_response(saved_posts):
             'is_video' : post.is_video,
         })
         if parsed_response[-1]['is_video']:
-            parsed_response[-1]['thumbnail'] = post.thumbnail
+            parsed_response[-1]['thumbnail'] = post.preview['images'][0]['source']['url']
 
     return parsed_response
 
