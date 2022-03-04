@@ -1,5 +1,4 @@
-from ast import parse
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, url_for
 from datetime import datetime
 from uuid import uuid4
 import os, praw
@@ -36,7 +35,10 @@ def parse_reddit_api_response(saved_posts):
             'is_video' : post.is_video,
         })
         if parsed_response[-1]['is_video']:
-            parsed_response[-1]['thumbnail'] = post.preview['images'][0]['source']['url']
+            if hasattr(post, 'preview'):
+                parsed_response[-1]['thumbnail'] = post.preview['images'][0]['source']['url']
+            else:
+                parsed_response[-1]['thumbnail'] = url_for('static', 'no_preview.png')
 
     return parsed_response
 
