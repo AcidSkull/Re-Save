@@ -1,7 +1,9 @@
 Posts = document.getElementsByClassName('posts')
 Titles = document.getElementsByClassName('title');
+Searchbox = document.getElementById('searchbox')
 
-function Search_Site(){
+
+Searchbox.addEventListener('oninput', () => {
     let pattern = document.getElementById('searchbox');
 
     for(let i = 0; i < Titles.length; ++i){
@@ -11,4 +13,4 @@ function Search_Site(){
             Posts[i].style.display = '';
         }
     }
-}
+});
