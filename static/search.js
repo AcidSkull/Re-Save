@@ -1,4 +1,4 @@
-Posts = document.getElementsByClassName('posts')
+Posts = document.getElementsByClassName('post')
 Titles = document.getElementsByClassName('title');
 Searchbox = document.getElementById('searchbox');
 
