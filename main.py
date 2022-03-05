@@ -53,6 +53,7 @@ def index():
         if not session.get('Token'):
             session['Token'] = reddit.auth.authorize(session['code'])
             session['name'] = str(reddit.user.me())
+            session['image'] = reddit.user.me().icon_img
 
         response = {x.id:x for x in reddit.redditor(name=session['name']).saved(limit=None)}
         saved_posts = parse_reddit_api_response(response)
@@ -67,6 +68,7 @@ def logout():
     if session.get('Token'):
         session.pop('Token')
         session.pop('name')
+        session.pop('image')
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

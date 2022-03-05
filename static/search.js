@@ -2,8 +2,7 @@ Posts = document.getElementsByClassName('post')
 Titles = document.getElementsByClassName('title');
 Searchbox = document.getElementById('searchbox');
 
-
-Searchbox.addEventListener('input', () => {
+let search = function (){
     let pattern = document.getElementById('searchbox').value;
     let regex = new RegExp(pattern, "ig")
 
@@ -14,4 +13,7 @@ Searchbox.addEventListener('input', () => {
             Posts[i].style.display = 'none';
         }
     }
-});
+}
+
+Searchbox.addEventListener('input', search);
+Searchbox.addEventListener('keydown', search);

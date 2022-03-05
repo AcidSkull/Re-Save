@@ -70,69 +70,96 @@ p{
     justify-content: space-around;
   }
 
-#navbar a {
-    float: left;
-    color: black;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    background-color: #ff5500;
-}
-
 #navbar input[type=search] {
     padding: 6px;
     border: none;
     margin-top: 8px;
+    margin-bottom: 16px;
     font-size: 17px;
-    width: 40%;
+    width: 100%;
   }
 
-  #posts{
-      width: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-items: center;
-  }
+#navbar p{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
 
-  .post{
-      width: 95%;
-      padding: 2.5%;
-  }
+#navbar div{
+    display: flex;
+    align-items: center;
+}
 
-  .post img{
-      object-fit: scale-down;
-      max-height: 100%;
-      max-width: 100%;
-  }
+.user{
+    width: 15%;
+}
 
-  .post h2{
-      text-align: left;
-      margin: 0;
-  }
+#navbar div img{
+    height: 2.5rem;
+}
 
-  .post a{
-      color: black;
-      text-decoration: none;
-  }
+.settings{
+    width: 15%;
+	box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background:linear-gradient(to bottom, #ff5500 5%, #ffbf00 100%);
+	background-color:#ff5500;
+	border:3px solid #ff5500;
+	cursor:pointer;
+    display: flex;
+    justify-content: center;
+}
 
-  .post p{
-      text-align: left;
-      font-size: 15px;
-      margin: 0;
-  }
+.settings:hover {
+	background:linear-gradient(to bottom, #ffbf00 5%, #ff5500 100%);
+	background-color:#ffbf00;
+}
 
-  .post_topbar {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 10px;
-  }
+#posts{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
 
-  .score{
-      margin-right: 10px;
-  }
+.post{
+    width: 95%;
+    padding: 2.5%;
+}
 
-  .md{
-      margin: 0 2%;
-  }
+.post img{
+    object-fit: scale-down;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.post h2{
+    text-align: left;
+    margin: 0;
+}
+
+.post a{
+    color: black;
+    text-decoration: none;
+}
+
+.post p{
+    text-align: left;
+    font-size: 15px;
+    margin: 0;
+}
+
+.post_topbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.score{
+    margin-right: 10px;
+}
+
+.md{
+    margin: 0 2%;
+}
