@@ -3,7 +3,7 @@ Titles = document.getElementsByClassName('title');
 Searchbox = document.getElementById('searchbox');
 
 
-Searchbox.addEventListener('oninput', () => {
+Searchbox.addEventListener('input', () => {
     let pattern = document.getElementById('searchbox').value;
 
     for(let i = 0; i < Titles.length; ++i){
