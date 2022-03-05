@@ -13,37 +13,36 @@
     {% if (session.get('name')) %}
         <div id="navbar">
             <p>u/{{ session['name'] }}</p>
-            <input type="text" placeholder="Search..">
+            <input type="search" placeholder="Search.." id="searchbox" oninput="Search_Site()">
             <a href="{{ url_for('logout') }}">LOG OUT</a>
         </div>
         <div id="posts">
             {% for post in saved_posts %}
-            <div id="posts">
-                <div class="post">
-                    <div class="post_topbar">
-                        <div class="score">
-                            👍<br>
-                            {{ post['score'] }}<br>
-                            👎<br>
-                        </div>
-                        <div class="info">
-                            <p>{{ post['subreddit']}} 👉 Posted by u/{{ post['author'] }} ⏰ {{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }}</p>
-                            <a href="{{ post['permalink'] }}" target="_blank"><h2>{{ post['title'] }}</h2></a>
-                        </div>
+            <div class="post">
+                <div class="post_topbar">
+                    <div class="score">
+                        👍<br>
+                        {{ post['score'] }}<br>
+                        👎<br>
                     </div>
-                    <div>
-                    {% if post['selftext'] != None %}
-                        {{ post['selftext'] | safe }}
-                    {% elif not post['is_video']%}
-                        <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
-                    {% else %}
-                        <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
-                    {% endif %}
+                    <div class="info">
+                        <p>{{ post['subreddit']}} 👉 Posted by u/{{ post['author'] }} ⏰ {{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }}</p>
+                        <a href="{{ post['permalink'] }}" target="_blank"><h2 class="title">{{ post['title'] }}</h2></a>
                     </div>
+                </div>
+                <div>
+                {% if post['selftext'] != None %}
+                    {{ post['selftext'] | safe }}
+                {% elif not post['is_video']%}
+                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
+                {% else %}
+                    <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
+                {% endif %}
                 </div>
             </div>
             {% endfor %}
         </div>
+        <script src="{{ url_for('static', filename='search.js') }}"></script>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
             <hr><br>
