@@ -13,7 +13,7 @@
     {% if (session.get('name')) %}
         <div id="navbar">
             <p>u/{{ session['name'] }}</p>
-            <input type="search" placeholder="Search.." id="searchbox" oninput="Search_Site()">
+            <input type="search" placeholder="Search.." id="searchbox">
             <a href="{{ url_for('logout') }}">LOG OUT</a>
         </div>
         <div id="posts">
