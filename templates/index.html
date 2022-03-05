@@ -23,6 +23,9 @@
                 <img src="{{ url_for('static', filename='settings.png') }}" alt="settings">
             </div>
         </div>
+        <div id="hidden_menu">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio quod beatae ut deserunt, esse quasi et quis labore officia, distinctio ipsa, totam numquam molestiae laudantium. Dicta laboriosam maxime repellat officia fugiat natus autem consequatur, ipsum sunt quia blanditiis. Doloremque voluptatibus ipsa deleniti a magnam asperiores debitis aspernatur eaque quod obcaecati sint labore, modi quos aut consequuntur quam temporibus ut. Quia excepturi consequuntur illo voluptatem suscipit debitis odio accusantium at, neque consectetur iure saepe voluptatum. Eligendi exercitationem enim at corporis quos voluptatibus tenetur voluptate harum sint totam laboriosam quisquam ea consequatur ipsa, assumenda quibusdam, impedit id ad? Commodi facilis eos iure.
+        </div>
         <div id="posts">
             {% for post in saved_posts %}
             <div class="post">
@@ -50,6 +53,7 @@
             {% endfor %}
         </div>
         <script src="{{ url_for('static', filename='search.js') }}"></script>
+        <script src="{{ url_for('static', filename='hidden_menu.js) }}"></script>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
             <hr><br>

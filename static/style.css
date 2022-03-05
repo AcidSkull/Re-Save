@@ -98,6 +98,11 @@ p{
     height: 2.5rem;
 }
 
+#navbar div img::selection{
+    color: none;
+    background: none;
+}
+
 .settings{
     width: 15%;
 	box-shadow:inset 0px 1px 0px 0px #cf866c;
@@ -162,4 +167,12 @@ p{
 
 .md{
     margin: 0 2%;
+}
+
+#hidden_menu{
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
