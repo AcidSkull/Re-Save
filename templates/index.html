@@ -13,8 +13,8 @@
     {% if (session.get('name')) %}
         <div id="navbar">
             <div class="user">
-                <img src="{{ session['img'] }}" alt="avatar">
-                <p>{{ session['name'] }}</p>
+                <img src="{{ session['image'] }}" alt="avatar">
+                <p>u/{{ session['name'] }}</p>
             </div>
             <div>
                 <input type="search" placeholder="Search.." id="searchbox">
