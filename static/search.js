@@ -8,10 +8,10 @@ Searchbox.addEventListener('input', () => {
     let regex = new RegExp(pattern)
 
     for(let i = 0; i < Titles.length; ++i){
-        if(regex.test(Titles.textContent)){
-            Posts[i].style.display = 'none';
-        } else {
+        if(regex.test(Titles.textContent) || pattern == ''){
             Posts[i].style.display = '';
+        } else {
+            Posts[i].style.display = 'none';
         }
     }
 });
