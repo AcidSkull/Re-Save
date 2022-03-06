@@ -170,9 +170,17 @@ p{
 }
 
 #hidden_menu{
-  padding: 0 18px;
-  background-color: white;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+}
+
+.category{
+    background-color: white;
+    border-radius: 50px;
+    border: 2px black solid;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
