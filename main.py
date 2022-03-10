@@ -1,3 +1,4 @@
+from email.policy import default
 from flask import Flask, render_template, request, session, url_for, redirect
 from datetime import datetime
 from uuid import uuid4
@@ -53,9 +54,9 @@ def index():
 
     # If code response from reddit is present, get verification token and user name and avatar
     if request.args.get('code'):
-        session['code'] = request.args.get('code')
+        session['code'] = request.args.get('code', default='None')
 
-        if not session.get('Token'):
+        if session.get('Token') != 'None':
             session['Token'] = reddit.auth.authorize(session['code'])
             session['name'] = str(reddit.user.me())
             session['image'] = reddit.user.me().icon_img
