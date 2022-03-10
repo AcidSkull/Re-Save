@@ -1,4 +1,3 @@
-from email.policy import default
 from flask import Flask, render_template, request, session, url_for, redirect
 from datetime import datetime
 from uuid import uuid4
@@ -21,6 +20,11 @@ reddit = praw.Reddit(
         redirect_uri = URI,
         user_agent = USER_AGENT,
     )
+
+# Function to return auth url
+def auth_url():
+        random_string = str(uuid4)
+        return reddit.auth.url(SCOPE, random_string, 'permanent')
 
 # Function to parse reddit API response to valid types in some cases
 def parse_reddit_api_response(saved_posts):
@@ -54,19 +58,21 @@ def index():
 
     # If code response from reddit is present, get verification token and user name and avatar
     if request.args.get('code'):
-        session['code'] = request.args.get('code', default='None')
+        session['code'] = request.args.get('code')
+        try:
+            if not session.get('Token'):
+                session['Token'] = reddit.auth.authorize(session['code'])
+                session['name'] = str(reddit.user.me())
+                session['image'] = reddit.user.me().icon_img
 
-        if session.get('Token') != 'None':
-            session['Token'] = reddit.auth.authorize(session['code'])
-            session['name'] = str(reddit.user.me())
-            session['image'] = reddit.user.me().icon_img
-
-        response = {x.id:x for x in reddit.redditor(name=session['name']).saved(limit=None)}
-        saved_posts = parse_reddit_api_response(response)
+            response = {x.id:x for x in reddit.redditor(name=session['name']).saved(limit=None)}
+            saved_posts = parse_reddit_api_response(response)
+        except Exception:
+            print(Exception)
+            url = auth_url()
     # If no code in get args, create an authentication url and pass to the main page
     else:
-        random_string = str(uuid4)
-        url = reddit.auth.url(SCOPE, random_string, 'permanent')
+        url = auth_url()
         
     return render_template('index.html', auth_url=url, saved_posts=saved_posts)
     
