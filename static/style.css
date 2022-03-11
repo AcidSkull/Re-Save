@@ -184,3 +184,9 @@ p{
     justify-content: center;
     flex-direction: row;
 }
+
+.nsfw{
+    filter: blur(32px);
+    -webkit-filter: blur(32px);
+    cursor: pointer;
+}

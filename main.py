@@ -36,6 +36,7 @@ def parse_reddit_api_response(saved_posts):
             'selftext' : post.selftext_html, # Content of post
             'url' : post.url, # Url to image
             'is_video' : post.is_video,
+            'nsfw' : post.over_18,
         })
         # If post is video, get thumbnail or no preview image instead
         if parsed_response[-1]['is_video']:

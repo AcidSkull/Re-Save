@@ -44,7 +44,7 @@
                 {% if post['selftext'] != None %}
                     {{ post['selftext'] | safe }}
                 {% elif not post['is_video']%}
-                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}">
+                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}" {{ class="nsfw" if psot['nsfw'] }}>
                 {% else %}
                     <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
                 {% endif %}
@@ -54,6 +54,7 @@
         </div>
         <script src="{{ url_for('static', filename='search.js') }}"></script>
         <script src="{{ url_for('static', filename='hidden_menu.js') }}"></script>
+        <script src="{{ url_for('static', filename='nsfw.js') }}"></script>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
             <hr><br>
