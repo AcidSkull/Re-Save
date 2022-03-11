@@ -36,7 +36,7 @@
                         👎<br>
                     </div>
                     <div class="info">
-                        <p><p class="subreddit">{{ post['subreddit']}}</p> 👉 Posted by u/{{ post['author'] }} ⏰ {{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }}</p>
+                        <p><p class="subreddit">{{ post['subreddit']}}</p> 👉 Posted by u/{{ post['author'] }} ⏰ {{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }} {% if post['nsfw'] %}<span class="nsfw_title"> 🔥 NSFW</span>{% endif %}</p>
                         <a href="{{ post['permalink'] }}" target="_blank"><h2 class="title">{{ post['title'] }}</h2></a>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 {% elif not post['is_video']%}
                     <img src="{{ post['url'] }}" alt="{{ post['title'] }}" {% if post['nsfw'] %}class="nsfw"{% endif %}>
                 {% else %}
-                    <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
+                    <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}" {% if post['nsfw'] %}class="nsfw"{% endif %}></a>
                 {% endif %}
                 </div>
             </div>

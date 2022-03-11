@@ -190,3 +190,8 @@ p{
     -webkit-filter: blur(32px);
     cursor: pointer;
 }
+
+.nsfw_title{
+    color: red;
+    font-weight: 900;
+}
