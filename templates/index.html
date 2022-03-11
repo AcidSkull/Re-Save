@@ -44,7 +44,7 @@
                 {% if post['selftext'] != None %}
                     {{ post['selftext'] | safe }}
                 {% elif not post['is_video']%}
-                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}" {{ 'class="nsfw"' if post['nsfw'] }}>
+                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}" {{ 'class="nsfw"' if post['nsfw'] | safe }}>
                 {% else %}
                     <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
                 {% endif %}
@@ -61,7 +61,6 @@
             <p><b>SAVED POST MANAGER</b> is free and open-source tool to browse and manage you're saved posts. The main advantage of project are:</p>
             <ul>
                 <li>Browse you're saved post fast and easy</li>
-                <li>Reddit show only 1 000 posts, now you can save all you're important stuff</li>
                 <li>Search through you're items</li>
                 <li>Group posts by subreddits</li>
             </ul>
