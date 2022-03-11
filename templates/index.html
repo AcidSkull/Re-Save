@@ -44,7 +44,7 @@
                 {% if post['selftext'] != None %}
                     {{ post['selftext'] | safe }}
                 {% elif not post['is_video']%}
-                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}" {{ class="nsfw" if psot['nsfw'] }}>
+                    <img src="{{ post['url'] }}" alt="{{ post['title'] }}" {{ 'class="nsfw"' if post['nsfw'] }}>
                 {% else %}
                     <a href="{{ post['url'] }}" target="_blank"><img src="{{ post['thumbnail'] }}" alt="{{ post['title'] }}"></a>
                 {% endif %}
