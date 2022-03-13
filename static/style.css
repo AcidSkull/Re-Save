@@ -183,6 +183,7 @@ p{
     display: flex;
     justify-content: center;
     flex-direction: row;
+    cursor: pointer;
 }
 
 .nsfw{
