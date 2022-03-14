@@ -175,7 +175,7 @@ p{
   transition: max-height 0.2s ease-out;
 }
 
-.category{
+.search_category{
     background-color: white;
     border-radius: 50px;
     border: 2px black solid;
@@ -195,4 +195,8 @@ p{
 .nsfw_title{
     color: red;
     font-weight: 900;
+}
+
+.chosen{
+    background-color: rgb(252, 125, 21);
 }
