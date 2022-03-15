@@ -1,6 +1,6 @@
-Posts = document.getElementsByClassName('post')
-Titles = document.getElementsByClassName('title');
-Searchbox = document.getElementById('searchbox');
+let Posts = document.getElementsByClassName('post')
+let Titles = document.getElementsByClassName('title');
+let Searchbox = document.getElementById('searchbox');
 
 let search = function (){
     // Seting regular expression equal to text in search bar
