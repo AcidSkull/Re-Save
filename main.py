@@ -43,7 +43,7 @@ def parse_reddit_api_response(saved_posts):
             if hasattr(post, 'preview'):
                 parsed_response[-1]['thumbnail'] = post.preview['images'][0]['source']['url']
             else:
-                parsed_response[-1]['thumbnail'] = url_for('static', filename='no_preview.png')
+                parsed_response[-1]['thumbnail'] = url_for('static', filename='images/no_preview.png')
 
     return parsed_response
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Saved Post Manager</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
                 <input type="search" placeholder="Search.." id="searchbox">
             </div>
             <div class="settings">
-                <img src="{{ url_for('static', filename='settings.png') }}" alt="settings">
+                <img src="{{ url_for('static', filename='images/settings.png') }}" alt="settings">
             </div>
         </div>
         <div id="hidden_menu">
@@ -53,9 +53,9 @@
             </div>
             {% endfor %}
         </div>
-        <script src="{{ url_for('static', filename='search.js') }}"></script>
-        <script src="{{ url_for('static', filename='hidden_menu.js') }}"></script>
-        <script src="{{ url_for('static', filename='nsfw.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/hidden_menu.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/nsfw.js') }}"></script>
     {% else %}
             <a href="{{ auth_url }}"><button id="url_button">LOG IN WITH REDDIT</button></a><br>
             <hr><br>

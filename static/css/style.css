@@ -3,7 +3,7 @@
 body{
     font-family: 'Nanum Gothic', sans-serif;
     margin: 0;
-    background-image: url("carbon_fibre.png");
+    background-image: url("../images/carbon_fibre.png");
     /* Background pattern from Toptal Subtle Patterns */
 }
 
