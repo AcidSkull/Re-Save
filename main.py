@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from flask import Flask, render_template, request, session, url_for, redirect
 from datetime import datetime
 from uuid import uuid4
@@ -49,7 +50,6 @@ def parse_reddit_api_response(saved_posts):
 
 @app.route('/')
 def index():
-    saved_posts = []
     url = ''
 
     # If code response from reddit is present, get verification token and user name and avatar
@@ -63,12 +63,15 @@ def index():
 
         response = {x.id:x for x in reddit.redditor(name=session['name']).saved(limit=None)}
         saved_posts = parse_reddit_api_response(response)
+
+        return render_template('index.html', saved_posts=saved_posts)
+
     # If no code in get args, create an authentication url and pass to the main page
     else:
         random_string = str(uuid4)
         url = reddit.auth.url(SCOPE, random_string, 'permanent')
-        
-    return render_template('index.html', auth_url=url, saved_posts=saved_posts)
+
+    return render_template('welcome_page.html', auth_url=url)
     
 # Logout view to destroy session variables and redirect to main view
 @app.route('/logout')
