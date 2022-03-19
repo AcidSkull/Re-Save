@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from flask import Flask, render_template, request, session, url_for, redirect
 from datetime import datetime
 from uuid import uuid4
