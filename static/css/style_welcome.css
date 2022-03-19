@@ -18,8 +18,8 @@ body{
 }
 
 /*################
- NAVBAR
-##################*/
+   NAVBAR
+  ################*/
 
 h1{
     font-family: 'Bebas Neue', cursive;
@@ -44,8 +44,8 @@ h1{
 }
 
 /*################
- SITE CONTENT
-##################*/
+   SITE CONTENT
+  ################*/
 
 #content{
     display: flex;
