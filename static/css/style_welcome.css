@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic&display=swap');
+
+body{
+    font-family: 'Nanum Gothic', sans-serif;
+    margin: 0;
+}
+
+#main{
+    background-color: whitesmoke;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-image: url(../images/blob-scene-haikei.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*################
+ NAVBAR
+##################*/
+
+h1{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4em;
+    color: #fffffe;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+#navbar {
+    /* background-color: #7f5af0; */
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: #231625 solid 5px;
+    background-color: rgb(99, 8, 185);
+}
+
+/*################
+ SITE CONTENT
+##################*/
+
+#content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+}
+
+#info{
+    width: 50%;
+    height: 100%;
+    color: white;
+    font-size: 1.5em;
+    padding: 25px;
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: rgb(197, 62, 197);
+}
+
+img{
+    height: 80vh;
+    width: 50%;
+}
+
+.auth_url:visited,.auth_url:link{
+    background-color: rgb(125, 0, 141);
+    color: white;
+    padding: 20px;
+}
+
+.auth_url:hover{
+    background-color: rgb(185, 72, 200);
+}
+
+@media only screen and (max-width: 600px){
+    img{
+        display: none;
+        width: 0;
+    }
+
+    #content{
+        font-size: 0.8em;
+    }
+
+    #info{
+        min-width: 100vw;
+        word-wrap: break-word;
+        padding: 0;
+        align-items: center;
+    }
+
+    .auth_url{
+        width: 70%;
+        margin: 15%;
+    }
+}
