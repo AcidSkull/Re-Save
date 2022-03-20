@@ -62,21 +62,28 @@ NAVBAR
     align-items: center;
 }
 
-#user{
+#buttons{
     width: 25%;
     display: flex;
-    justify-content: center;
+    justify-items: center;
+    justify-content: space-around;
 }
 
-#user button{
+#buttons button{
+    width: 30%;
     background-color: #231F37;
     color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     padding: 10px;
     border: #231F37 1px solid;
     border-radius: 25px;
+}
+
+#buttons button:hover{
+    background-color: #36324e;
 }
 
 #navbar div img{
