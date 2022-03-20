@@ -20,9 +20,9 @@
              <button>
                  <img src="{{ url_for('static', filename='images/settings.svg') }}" alt="settings">
              </button>
-             <button>
+             <a href="{{ url_for('logout') }}">
                  <img src="{{ url_for('static', filename='images/logout.svg') }}" alt="logout">
-             </button>
+             </a>
              <button>
                 <img src="{{ session['image'] }}" alt="avatar">
                 <p>{{ session['name'] }}</p>

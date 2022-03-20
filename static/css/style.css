@@ -69,7 +69,7 @@ NAVBAR
     justify-content: space-around;
 }
 
-#buttons button{
+#buttons button,a{
     width: 30%;
     background-color: #231F37;
     color: white;
@@ -82,7 +82,7 @@ NAVBAR
     border-radius: 25px;
 }
 
-#buttons button:hover{
+#buttons button:hover,a:hover{
     background-color: #36324e;
 }
 
