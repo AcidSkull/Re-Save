@@ -69,7 +69,7 @@ NAVBAR
     justify-content: space-around;
 }
 
-#buttons button,a{
+#buttons button,#buttons a{
     width: 30%;
     background-color: #231F37;
     color: white;
@@ -80,9 +80,10 @@ NAVBAR
     padding: 10px;
     border: #231F37 1px solid;
     border-radius: 25px;
+    cursor: pointer;
 }
 
-#buttons button:hover,a:hover{
+#buttons button:hover,#buttons a:hover{
     background-color: #36324e;
 }
 
@@ -190,20 +191,27 @@ MENU
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .search_category{
-    background-color: white;
+    display: inline-block;
+    background-color: #231F37;
     border-radius: 50px;
-    border: 2px black solid;
-    padding: 10px 15px;
+    color: white;
+    border: 2px white solid;
+    padding: 20px 15px;
+    width: fit-content;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    word-wrap: break-word;
     cursor: pointer;
+    margin: 0 10px;
 }
 
 
 .chosen{
-    background-color: rgb(252, 125, 21);
+    background-color: #7E217B;
 }
