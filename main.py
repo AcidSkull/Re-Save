@@ -47,30 +47,31 @@ def parse_reddit_api_response(saved_posts):
 
     return parsed_response
 
+def get_auth_url():
+    random_string = str(uuid4)
+    url = reddit.auth.url(SCOPE, random_string, 'permanent')
+    return url
+
 @app.route('/')
 def index():
-    url = ''
-
     # If code response from reddit is present, get verification token and user name and avatar
     if request.args.get('code'):
         session['code'] = request.args.get('code')
 
         if not session.get('Token'):
-            session['Token'] = reddit.auth.authorize(session['code'])
-            session['name'] = str(reddit.user.me())
-            session['image'] = reddit.user.me().icon_img
+            try:
+                session['Token'] = reddit.auth.authorize(session['code'])
+                session['name'] = str(reddit.user.me())
+                session['image'] = reddit.user.me().icon_img
+            except:
+                return render_template('welcome_page.html', auth_url=get_auth_url())
 
         response = {x.id:x for x in reddit.redditor(name=session['name']).saved(limit=None)}
         saved_posts = parse_reddit_api_response(response)
 
         return render_template('index.html', saved_posts=saved_posts)
 
-    # If no code in get args, create an authentication url and pass to the main page
-    else:
-        random_string = str(uuid4)
-        url = reddit.auth.url(SCOPE, random_string, 'permanent')
-
-    return render_template('welcome_page.html', auth_url=url)
+    return render_template('welcome_page.html', auth_url=get_auth_url())
     
 # Logout view to destroy session variables and redirect to main view
 @app.route('/logout')

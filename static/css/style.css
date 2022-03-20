@@ -62,13 +62,13 @@ NAVBAR
     align-items: center;
 }
 
-.user{
+#user{
     width: 25%;
     display: flex;
     justify-content: center;
 }
 
-.user button{
+#user button{
     background-color: #231F37;
     color: white;
     display: flex;
