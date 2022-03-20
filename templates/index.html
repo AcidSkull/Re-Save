@@ -18,14 +18,14 @@
          </div>
          <div id="buttons">
              <button>
-                 <img src="SavedPostMangerForReddit/static/images/settings.svg" alt="settings">
+                 <img src="{{ url_for('static', filename='images/settings.svg') }}" alt="settings">
              </button>
              <button>
-                 <img src="SavedPostMangerForReddit/static/images/logout.svg" alt="">
+                 <img src="{{ url_for('static', filename='images/logout.svg') }}" alt="logout">
              </button>
              <button>
-                <img src="https://styles.redditmedia.com/t5_19bwo5/styles/profileIcon_snoo967b6351-4e71-4f69-bc09-6eb4c0e2a520-headshot-f.png?width=256&height=256&crop=256:256,smart&s=c338fd674d0c8a3835c279e09b19367b7f51caf1">
-                <p>u/AciidSkull</p>
+                <img src="{{ session['image'] }}" alt="avatar">
+                <p>{{ session['name'] }}</p>
              </button>
          </div>
      </div>
