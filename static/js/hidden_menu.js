@@ -3,11 +3,19 @@ let menu = document.getElementById('hidden_menu');
 
 // Opening/closing accordion menu
 button[0].addEventListener('click', function(){
-    if(menu.style.maxHeight == menu.scrollHeight + 'px')
-        menu.style.maxHeight = 0; 
-    else 
-        menu.style.maxHeight = menu.scrollHeight + 'px';
+    if(menu.style.maxHeight == menu.scrollHeight + 'px'){
+        menu.style.maxHeight = 0;
+        menu.style.paddingBottom = 0;
+    } else {
+        menu.style.maxHeight = menu.scrollHeight + 20 + 'px';
+        menu.style.paddingBottom = "20px";
+    }
 });
+
+// Setting hidden menu below navbar
+let navbar = document.getElementById('navbar');
+
+menu.style.top = navbar.scrollHeight - 10 + "px";
 
 // Function to filter unique values from array
 const Unique = (value, index, self) => {
