@@ -189,6 +189,7 @@ MENU
 
 #hidden_menu{
   width: 100%;
+  min-height: 0;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
