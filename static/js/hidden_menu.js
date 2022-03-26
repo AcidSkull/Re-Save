@@ -14,7 +14,6 @@ button[0].addEventListener('click', function(){
 
 // Setting hidden menu below navbar
 let navbar = document.getElementById('navbar');
-
 menu.style.top = navbar.scrollHeight - 10 + "px";
 
 // Function to filter unique values from array

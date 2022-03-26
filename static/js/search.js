@@ -1,5 +1,4 @@
 let Posts = document.getElementsByClassName('post')
-let Titles = document.getElementsByClassName('title');
 let Searchbox = document.getElementById('searchbox');
 let sub = document.getElementsByClassName('subreddit');
 
@@ -13,7 +12,10 @@ function hide_it(){
     
     for(let i = 0; i < Posts.length; ++i){
         if((regex.test(Titles[i].textContent) || pattern == '') && 
-        (categories_to_show.length == 0 || categories_to_show.find(e => e == sub[i].textContent))){
+        (categories_to_show.length == 0 || categories_to_show.find(e => e == sub[i].textContent)) ||
+        ((nsfw_posts[i] == true && hide[1] == true ))||
+        ((nsfw_posts[i] == false && hide[0] == true )))
+        {
             Posts[i].style.display = '';
         } else {
             Posts[i].style.display = 'none';
