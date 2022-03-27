@@ -10,8 +10,8 @@ app.secret_key = str(uuid4)
 # Variables for praw.Reddit istance
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
-URI = 'https://savescraperforreddit.herokuapp.com'
-USER_AGENT = 'SaveScraperForReddit/0.3.5 by u/AciidSkull'
+URI = 'https://resave.herokuapp.com'
+USER_AGENT = 'Re-Save/0.3.5 by u/AciidSkull'
 SCOPE = ['identity', 'read', 'history']
 
 reddit = praw.Reddit(
