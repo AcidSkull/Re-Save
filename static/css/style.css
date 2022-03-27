@@ -231,6 +231,30 @@ MENU
     background-color: #7E217B;
 }
 
+/*
+#############
+SCROLLBAR 
+#############
+*/
+
+* {
+scrollbar-width: auto;
+scrollbar-color: #6308B9 #16161A;
+}
+
+*::-webkit-scrollbar {
+width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+background: #16161A;
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: #8f54a0;
+border-radius: 10px;
+}
+
 @media only screen and (max-width: 800px){
     #main{
         max-width: 100%;
