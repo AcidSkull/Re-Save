@@ -88,7 +88,8 @@ NAVBAR
 }
 
 #navbar div img{
-    height: 2.5rem;
+    max-height: 2.5rem;
+    object-fit: scale-down;
 }
 
 #navbar div img::selection{
@@ -194,8 +195,6 @@ MENU
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   margin-bottom: 20px;
-  padding-left: 19px;
-  padding-right: 19px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -230,4 +229,37 @@ MENU
 
 .chosen{
     background-color: #7E217B;
+}
+
+@media only screen and (max-width: 800px){
+    #main{
+        max-width: 100%;
+        margin: 0;
+    }
+
+    #title, #title h1{
+        display: none;
+        width: 0;
+    }
+
+    #buttons button:nth-child(3){
+        display: none;
+        width: 0;
+    }
+
+    #search{
+        width: 60%;
+    }
+
+    #navbar div img{
+        max-height: 1.5rem;
+    }
+
+    #buttons{
+        justify-content: space-around;
+    }
+
+    #buttons button{
+        width: 50%;
+    }
 }
