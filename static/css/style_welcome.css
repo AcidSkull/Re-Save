@@ -129,4 +129,8 @@ border-radius: 10px;
         width: 70%;
         margin: 15%;
     }
+
+    #info{
+        font-size: 0.5rem;
+    }
 }
