@@ -43,7 +43,7 @@
                         👎<br>
                     </div>
                     <div class="info">
-                        <p><p class="subreddit">{{ post['subreddit']}}</p> 👉 Posted by u/{{ post['author'] }} ⏰ {{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }} {% if post['nsfw'] %}<span class="nsfw_title"> 🔥 NSFW</span>{% endif %}</p>
+                        <p><p class="subreddit">{{ post['subreddit']}}</p> <p>👉 Posted by u/{{ post['author'] }}</p><p> ⏰ {{ post['date'].day }}-{{ post['date'].month }}-{{ post['date'].year }}</p> {% if post['nsfw'] %}<p></p><span class="nsfw_title"> 🔥 NSFW</span></p>{% endif %}</p>
                         <a href="{{ post['permalink'] }}" target="_blank"><h2 class="title">{{ post['title'] }}</h2></a>
                     </div>
                 </div>
