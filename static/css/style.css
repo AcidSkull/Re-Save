@@ -286,4 +286,8 @@ border-radius: 10px;
     #buttons button{
         width: 50%;
     }
+
+    .info{
+        text-align: left;;
+    }
 }
