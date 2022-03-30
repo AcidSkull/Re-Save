@@ -11,7 +11,7 @@ app.secret_key = str(uuid4)
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
 URI = 'https://resave.herokuapp.com'
-USER_AGENT = 'Re-Save/0.3.5 by u/AciidSkull'
+USER_AGENT = 'Re-Save/1.0 by u/AciidSkull'
 SCOPE = ['identity', 'read', 'history']
 
 reddit = praw.Reddit(
