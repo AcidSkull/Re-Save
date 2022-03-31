@@ -69,8 +69,15 @@ NAVBAR
     justify-content: space-around;
 }
 
-#buttons button,#buttons a{
+#buttons button{
+    width: auto;
+}
+
+#buttons a{
     width: 30%;
+}
+
+#buttons button,#buttons a{
     background-color: #231F37;
     color: white;
     display: flex;
@@ -81,6 +88,7 @@ NAVBAR
     border: #231F37 1px solid;
     border-radius: 25px;
     cursor: pointer;
+    object-fit: inherit;
 }
 
 #buttons button:hover,#buttons a:hover{
@@ -88,8 +96,9 @@ NAVBAR
 }
 
 #navbar div img{
-    max-height: 2.5rem;
-    object-fit: scale-down;
+    max-height: 2.0rem;
+    width: auto;
+    object-fit: fill;
 }
 
 #navbar div img::selection{
